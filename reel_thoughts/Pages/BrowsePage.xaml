@@ -9,7 +9,6 @@
       Title="BrowsePage">
 
     <StackPanel>
-        <TextBlock x:Name="textBlock" Text="Hello, XAML!" Margin="10"/>
-        <Button Content="Click Me" Margin="10" Click="Button_Click"/>
+        
     </StackPanel>
 </Page>
