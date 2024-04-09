@@ -4,6 +4,7 @@
              xmlns:local="clr-namespace:reel_thoughts"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <SolidColorBrush x:Key="AppBackgroundColor" Color="Black"/>
+
     </Application.Resources>
 </Application>

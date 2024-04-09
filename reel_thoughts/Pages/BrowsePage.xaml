@@ -7,9 +7,4 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="BrowsePage">
-
-    <StackPanel>
-        <TextBlock x:Name="textBlock" Text="Hello, XAML!" Margin="10"/>
-        <Button Content="Click Me" Margin="10" Click="Button_Click"/>
-    </StackPanel>
 </Page>
