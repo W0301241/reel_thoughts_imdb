@@ -5,6 +5,13 @@ using Microsoft.EntityFrameworkCore;
 
 //scaffold-dbcontext "Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=IMDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False" Microsoft.EntityFrameworkCore.SqlServer -outputdir Models/Generated -contextdir Data -namespace IMDBInterface.Models -contextnamespace IMDBInterface.Data -force
 
+//Kenzie: Project Description, Top Rated Movies Page
+//Haley: Project Timeline, Search Page
+//Brenton: Project Wireframe, Browse Page
+//All: Setting up DB Connection and Home Page
+
+
+
 namespace IMDBInterface.Data;
 
 public partial class ImdbContext : DbContext

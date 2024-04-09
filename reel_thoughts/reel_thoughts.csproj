@@ -9,6 +9,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\browse.png" />
+    <None Remove="Images\exit_button.png" />
+    <None Remove="Images\home.png" />
+    <None Remove="Images\moviebackground.jpg" />
+    <None Remove="Images\rate.png" />
+    <None Remove="Images\search_button.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.17" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.17">
       <PrivateAssets>all</PrivateAssets>
@@ -22,7 +31,24 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Images\" />
+    <Resource Include="Images\browse.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\exit_button.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\home.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\moviebackground.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\rate.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\search_button.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>

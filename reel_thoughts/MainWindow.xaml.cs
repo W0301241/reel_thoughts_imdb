@@ -19,6 +19,34 @@ namespace reel_thoughts
         public MainWindow()
         {
             InitializeComponent();
+            mainFrame.NavigationService.Navigate(new Pages.HomePage());
         }
+
+        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            mainFrame.NavigationService.Navigate(new Pages.SearchPage());
+        }
+
+        private void ExitButton_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void HomeButton_Click(object sender, RoutedEventArgs e)
+        {
+            mainFrame.NavigationService.Navigate(new Pages.HomePage());
+        }
+
+        private void BrowseButton_Click(object sender, RoutedEventArgs e)
+        {
+            mainFrame.NavigationService.Navigate(new Pages.BrowsePage());
+        }
+
+        private void RatedButton_Click(object sender, RoutedEventArgs e)
+        {
+            mainFrame.NavigationService.Navigate(new Pages.RatedPage());
+        }
+
+
     }
 }

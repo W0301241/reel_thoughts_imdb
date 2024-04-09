@@ -6,7 +6,71 @@
         xmlns:local="clr-namespace:reel_thoughts"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-
-    </Grid>
+    <Window.Resources>
+        <ResourceDictionary>
+            <BitmapImage x:Key="searchImage" UriSource="/images/search_button.png"></BitmapImage>
+            <BitmapImage x:Key="exitImage" UriSource="/images/exit_button.png"></BitmapImage>
+            <BitmapImage x:Key="homeImage" UriSource="/images/home.png"></BitmapImage>
+            <BitmapImage x:Key="browseImage" UriSource="/images/browse.png"></BitmapImage>
+            <BitmapImage x:Key="ratedImage" UriSource="/images/rate.png"></BitmapImage>
+        </ResourceDictionary>
+    </Window.Resources>
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="File">
+                <MenuItem Header="_Exit" Click="ExitButton_Click">
+                    <MenuItem.Icon>
+                        <Image Source="{StaticResource exitImage}"></Image>
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="Pages">
+                <MenuItem Header="_Home" Click="HomeButton_Click">
+                    <MenuItem.Icon>
+                        <Image Source="{StaticResource homeImage}"></Image>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="_Search" Click="SearchButton_Click">
+                    <MenuItem.Icon>
+                        <Image Source="{StaticResource searchImage}"></Image>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="_Browse" Click="BrowseButton_Click">
+                    <MenuItem.Icon>
+                        <Image Source="{StaticResource browseImage}"></Image>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="_View Rated Movies" Click="RatedButton_Click">
+                    <MenuItem.Icon>
+                        <Image Source="{StaticResource ratedImage}"></Image>
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+        </Menu>
+        <ToolBar DockPanel.Dock="Left">
+            <StackPanel Orientation="Vertical" Width="50">
+                <Button x:Name="HomeButton" Click="HomeButton_Click" ToolTip="Go to Home Page" Margin="10,10,0,10">
+                    <Image Source="{StaticResource homeImage}"></Image>
+                </Button>
+                <Button x:Name="SearchButton" Click="SearchButton_Click" ToolTip="Search" Margin="10,0,0,10">
+                    <Image Source="{StaticResource searchImage}"></Image>
+                </Button>
+                <Button x:Name="BrowseButton" Click="BrowseButton_Click" ToolTip="Browse" Margin="10,0,0,10">
+                    <Image Source="{StaticResource browseImage}"></Image>
+                </Button>
+                <Button x:Name="RatedButton" Click="RatedButton_Click" ToolTip="View Rated Movies" Margin="10,0,0,10">
+                    <Image Source="{StaticResource ratedImage}"></Image>
+                </Button>
+            </StackPanel>
+        </ToolBar>
+        <Frame x:Name="mainFrame" Height="Auto" Width="Auto"
+               NavigationUIVisibility="Hidden"
+               DockPanel.Dock="Bottom"></Frame>
+    </DockPanel>
 </Window>
+
+<!--<a href="https://www.flaticon.com/free-icons/search" title="search icons">Search icons created by Freepik - Flaticon</a>-->
+<!--<a href="https://www.flaticon.com/free-icons/ui" title="ui icons">Ui icons created by Adrly - Flaticon</a>-->
+<!--<a href="https://www.flaticon.com/free-icons/home-button" title="home button icons">Home button icons created by Freepik - Flaticon</a>-->
+<!--<a href="https://www.flaticon.com/free-icons/5-stars" title="5 stars icons">5 stars icons created by photo3idea_studio - Flaticon</a>-->
+<!--<a href="https://www.flaticon.com/free-icons/catalog" title="catalog icons">Catalog icons created by Royyan Wijaya - Flaticon</a>-->

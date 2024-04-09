@@ -7,8 +7,28 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="HomePage">
+    <Page.Background>
+        <ImageBrush ImageSource="\images\moviebackground.jpg"/>
+    </Page.Background>
 
-    <Grid>
-        
-    </Grid>
+    <Page.Resources>
+        <Style x:Key="homePageTitle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="White"></Setter>
+            <Setter Property="FontSize" Value="40"></Setter>
+            <Setter Property="Margin" Value="20"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+        </Style>
+        <Style x:Key="homePageText" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="24"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+            <Setter Property="Foreground" Value="DarkRed"></Setter>
+        </Style>
+    </Page.Resources>
+
+
+    <StackPanel>
+        <TextBlock Text="Welcome to Reel Thoughts!" Style="{StaticResource homePageTitle}"></TextBlock>
+        <TextBlock Text="Check Out Our Real Reels"
+                   Style="{StaticResource homePageText}"></TextBlock>
+    </StackPanel>
 </Page>
