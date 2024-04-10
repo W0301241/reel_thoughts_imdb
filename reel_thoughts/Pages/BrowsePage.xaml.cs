@@ -1,4 +1,6 @@
-﻿using System;
+﻿using IMDBInterface.Data;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using IMDBInterface.Models;
 
 namespace reel_thoughts.Pages
 {
@@ -20,9 +23,18 @@ namespace reel_thoughts.Pages
     /// </summary>
     public partial class BrowsePage : Page
     {
+        ImdbContext context = new ImdbContext();
+        
         public BrowsePage()
         {
-            InitializeComponent();
+            InitializeComponent();    
+            
+            context.Titles.Load();
+
+            TitlesListView.ItemsSource = context.Titles.Local.ToObservableCollection();
+
         }
+
+       
     }
 }
