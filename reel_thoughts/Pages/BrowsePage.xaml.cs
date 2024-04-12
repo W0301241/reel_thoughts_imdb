@@ -27,12 +27,26 @@ namespace reel_thoughts.Pages
         
         public BrowsePage()
         {
-            InitializeComponent();    
+            InitializeComponent();
+
+            //context.Titles.Load();
+
+            //TitlesListView.ItemsSource = context.Titles.Local.ToObservableCollection();
             
-            context.Titles.Load();
+            var movies = context.Titles
+                .Select(t => new
+                {
+                    PrimaryTitle = t.PrimaryTitle,
+                    StartYear = t.StartYear,
+                    AverageRating = t.Rating.AverageRating, 
+                    RuntimeMinutes = t.RuntimeMinutes,
+                    //I would like to have directors. but hwere?
+                    Genres = string.Join(", ", t.Genres.Select(g => g.Name)) // Concatenate genre names
+                })
+                .ToList();
 
-            TitlesListView.ItemsSource = context.Titles.Local.ToObservableCollection();
-
+            
+            TitlesListView.ItemsSource = movies;
         }
 
        

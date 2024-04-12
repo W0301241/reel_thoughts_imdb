@@ -7,8 +7,8 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="BrowsePage">
-
-    <ListView x:Name="TitlesListView" Height="500">
+        <!--First iteration of design for the browse page-->
+    <!--<ListView x:Name="TitlesListView" Height="500">
         <ListView.ItemTemplate>
             <DataTemplate>
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
@@ -28,6 +28,55 @@
                 </StackPanel>
             </DataTemplate>
         </ListView.ItemTemplate>
+    </ListView>-->
+    <Page.Resources>
+        <Style x:Key="HeaderStyle" TargetType="TextBlock">
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Margin" Value="2"/>
+        </Style>
+        <Style x:Key="ItemStyle" TargetType="TextBlock">
+            <Setter Property="Margin" Value="2"/>
+            <Setter Property="FontSize" Value="12"/>
+        </Style>
+    </Page.Resources>
+
+    <ListView x:Name="TitlesListView" Margin="10">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <Expander Header="{Binding PrimaryTitle}" IsExpanded="False">
+                    <StackPanel>
+                        <TextBlock Text="Title Information:" FontWeight="Bold" />
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Year: " Style="{StaticResource HeaderStyle}"/>
+                            <TextBlock Text="{Binding StartYear}" Style="{StaticResource ItemStyle}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Rating: " Style="{StaticResource HeaderStyle}"/>
+                            <TextBlock Text="{Binding AverageRating}" Style="{StaticResource ItemStyle}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Runtime: " Style="{StaticResource HeaderStyle}"/>
+                            <TextBlock Text="{Binding RuntimeMinutes, StringFormat='{}{0} min'}" Style="{StaticResource ItemStyle}"/>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Genres: " Style="{StaticResource HeaderStyle}"/>
+                            <TextBlock Text="{Binding Genres}" Style="{StaticResource ItemStyle}"/>
+                        </StackPanel>
+                        
+                        <ItemsControl ItemsSource="{Binding Episodes}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding EpisodeNumber, StringFormat='Episode {0}:'}" FontWeight="Bold" />
+                                    
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </Expander>
+            </DataTemplate>
+        </ListView.ItemTemplate>
     </ListView>
-    
+
+
 </Page>
