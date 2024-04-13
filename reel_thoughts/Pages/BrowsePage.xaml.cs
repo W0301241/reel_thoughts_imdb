@@ -21,34 +21,60 @@ namespace reel_thoughts.Pages
     /// <summary>
     /// Interaction logic for BrowsePage.xaml
     /// </summary>
+    /// 
+
     public partial class BrowsePage : Page
     {
-        ImdbContext context = new ImdbContext();
-        
+        private ImdbContext context = new ImdbContext();
+
         public BrowsePage()
         {
             InitializeComponent();
+            InitializeMoviesList();
+        }
 
-            //context.Titles.Load();
-
-            //TitlesListView.ItemsSource = context.Titles.Local.ToObservableCollection();
-            
+        private void InitializeMoviesList()
+        {
+            // Load only the primary titles for initial display
             var movies = context.Titles
                 .Select(t => new
                 {
-                    PrimaryTitle = t.PrimaryTitle,
-                    StartYear = t.StartYear,
-                    AverageRating = t.Rating.AverageRating, 
-                    RuntimeMinutes = t.RuntimeMinutes,
-                    //I would like to have directors. but hwere?
-                    Genres = string.Join(", ", t.Genres.Select(g => g.Name)) // Concatenate genre names
+                    t.TitleId,
+                    PrimaryTitle = t.PrimaryTitle
                 })
+                .OrderBy(t => t.PrimaryTitle)
                 .ToList();
 
-            
-            TitlesListView.ItemsSource = movies;
+            moviesListView.ItemsSource = movies;
         }
 
-       
+        private void Expander_Expanded(object sender, RoutedEventArgs e)
+        {
+            var expander = sender as Expander;
+            if (expander != null && expander.IsExpanded)
+            {
+                var title = expander.Header.ToString();
+                var movieDetails = context.Titles
+                    .Where(t => t.PrimaryTitle == title)
+                    .Select(t => new
+                    {
+                        Year = t.StartYear,
+                        Genres = string.Join(", ", t.Genres.Select(g => g.Name)),
+                        AverageRating = t.Rating.AverageRating
+                    }).FirstOrDefault();
+
+                if (movieDetails != null)
+                {
+                    var contentPanel = expander.Content as StackPanel;
+                    if (contentPanel != null)
+                    {
+                        contentPanel.Children.Clear();
+                        contentPanel.Children.Add(new TextBlock { Text = $"Year: {movieDetails.Year}", FontWeight = FontWeights.Bold });
+                        contentPanel.Children.Add(new TextBlock { Text = $"Genres: {movieDetails.Genres}" });
+                        contentPanel.Children.Add(new TextBlock { Text = $"Rating: {movieDetails.AverageRating}" });
+                    }
+                }
+            }
+        }
     }
 }

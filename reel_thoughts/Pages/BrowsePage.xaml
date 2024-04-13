@@ -7,76 +7,48 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="BrowsePage">
-        <!--First iteration of design for the browse page-->
-    <!--<ListView x:Name="TitlesListView" Height="500">
-        <ListView.ItemTemplate>
-            <DataTemplate>
-                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                    <Border Width="20" Height="20" BorderThickness="3"></Border>
-                    <StackPanel Orientation="Vertical" Margin="10,0,0,0" Width="200">
-                        <TextBlock Text="Movie Title:" FontWeight="Bold"/>
-                        <TextBlock Text="{Binding PrimaryTitle}"/>
-                        <TextBlock Text="Start Year:" FontWeight="Bold"/>
-                        <TextBlock Text="{Binding StartYear}"/>
-                    </StackPanel>
-                    <StackPanel Margin="10,0,0,0" Width="200">
-                        <TextBlock Text="Rating:" FontWeight="Bold"/>
-                        <TextBlock Text="{Binding Rating.Value}"/>
-                        <TextBlock Text="Runtime:" FontWeight="Bold"/>
-                        <TextBlock Text="{Binding RuntimeMinutes, StringFormat='{}{0} min'}"/>
-                    </StackPanel>
-                </StackPanel>
-            </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>-->
+
     <Page.Resources>
-        <Style x:Key="HeaderStyle" TargetType="TextBlock">
-            <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="FontSize" Value="14"/>
-            <Setter Property="Margin" Value="2"/>
+        <Style x:Key="ExpanderHeaderStyle" TargetType="Expander">
+            <Setter Property="Background" Value="#DDD"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Padding" Value="5"/>
         </Style>
-        <Style x:Key="ItemStyle" TargetType="TextBlock">
-            <Setter Property="Margin" Value="2"/>
-            <Setter Property="FontSize" Value="12"/>
+
+        <Style x:Key="TextBlockStyle" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Margin" Value="5"/>
         </Style>
     </Page.Resources>
 
-    <ListView x:Name="TitlesListView" Margin="10">
-        <ListView.ItemTemplate>
-            <DataTemplate>
-                <Expander Header="{Binding PrimaryTitle}" IsExpanded="False">
-                    <StackPanel>
-                        <TextBlock Text="Title Information:" FontWeight="Bold" />
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Year: " Style="{StaticResource HeaderStyle}"/>
-                            <TextBlock Text="{Binding StartYear}" Style="{StaticResource ItemStyle}"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Rating: " Style="{StaticResource HeaderStyle}"/>
-                            <TextBlock Text="{Binding AverageRating}" Style="{StaticResource ItemStyle}"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Runtime: " Style="{StaticResource HeaderStyle}"/>
-                            <TextBlock Text="{Binding RuntimeMinutes, StringFormat='{}{0} min'}" Style="{StaticResource ItemStyle}"/>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Genres: " Style="{StaticResource HeaderStyle}"/>
-                            <TextBlock Text="{Binding Genres}" Style="{StaticResource ItemStyle}"/>
-                        </StackPanel>
-                        
-                        <ItemsControl ItemsSource="{Binding Episodes}">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding EpisodeNumber, StringFormat='Episode {0}:'}" FontWeight="Bold" />
-                                    
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                        </ItemsControl>
-                    </StackPanel>
-                </Expander>
-            </DataTemplate>
-        </ListView.ItemTemplate>
-    </ListView>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
+        <TextBlock Text="Browse Movies"
+                   FontSize="24"
+                   FontWeight="Bold"
+                   Foreground="DarkSlateBlue"
+                   HorizontalAlignment="Center"
+                   Margin="10"/>
 
+        <ListView x:Name="moviesListView"
+                  Grid.Row="1"
+                  Margin="10"
+                  ItemsSource="{Binding}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Expander Header="{Binding PrimaryTitle}" Style="{StaticResource ExpanderHeaderStyle}" Expanded="Expander_Expanded">
+                        <StackPanel>
+                            <!-- Dynamic content will be loaded here -->
+                        </StackPanel>
+                    </Expander>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
 </Page>
