@@ -19,20 +19,20 @@
             <Button x:Name="SearchButton"
                     Click="SearchButton_Click" Style="{StaticResource SearchButton}"/>
         </StackPanel>
-        <DataGrid Height="450" Width="750" 
-                  ItemsSource="{Binding Source={StaticResource searchViewSource}}"
-                  AutoGenerateColumns="False"
-                  RowBackground="LightGray"
-                  AlternatingRowBackground="#FFD1DC"
-                  GridLinesVisibility="None">
-            <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding PrimaryName}"
-                            Header="Name" SortDirection="Ascending" Width="100">
-                </DataGridTextColumn>
-                <DataGridTextColumn Binding="{Binding PrimaryProfession}"
-                            Header="Profession">
-                </DataGridTextColumn>
-            </DataGrid.Columns>
-        </DataGrid>
+        <ListView ItemsSource="{Binding Source={StaticResource searchViewSource}}"
+                  MaxHeight="500" MaxWidth="800">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Vertical" Width="550">
+                            <TextBlock Text="{Binding PrimaryName}" TextWrapping="Wrap"></TextBlock>
+                        </StackPanel>
+                        <StackPanel Orientation="Vertical" Width="250">
+                            <TextBlock Text="{Binding PrimaryProfession}"></TextBlock>
+                        </StackPanel>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </StackPanel>
 </Page>
