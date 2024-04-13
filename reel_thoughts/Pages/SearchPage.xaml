@@ -8,7 +8,22 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="SearchPage">
 
-    <Page.Resources>
+    <StackPanel>
+        <TextBox x:Name="txtSearch" Width="300" Margin="10" FontSize="16" HorizontalAlignment="Left" />
+        <Button Content="Search" Width="100" Margin="10" HorizontalAlignment="Left" Click="SearchButton_Click"/>
+        <ListView x:Name="TitlesListView" Margin="10">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding PrimaryName}" FontWeight="Bold" FontSize="14" />
+                        <TextBlock Text="{Binding PrimaryProfession}" FontSize="12" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackPanel>
+
+    <!--<Page.Resources>
         <CollectionViewSource x:Key="searchViewSource"></CollectionViewSource>
     </Page.Resources>
 
@@ -34,5 +49,5 @@
                 </DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
-    </StackPanel>
+    </StackPanel>-->
 </Page>

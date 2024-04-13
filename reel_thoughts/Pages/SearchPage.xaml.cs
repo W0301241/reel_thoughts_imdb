@@ -23,27 +23,38 @@ namespace reel_thoughts.Pages
     public partial class SearchPage : Page
     {
         ImdbContext context = new ImdbContext();
-        CollectionViewSource searchViewSource = new CollectionViewSource();
+        //CollectionViewSource searchViewSource = new CollectionViewSource();
 
         public SearchPage()
         {
             InitializeComponent();
 
-            searchViewSource = (CollectionViewSource)FindResource(nameof(searchViewSource));
+            //searchViewSource = (CollectionViewSource)FindResource(nameof(searchViewSource));
 
-            context.Names.Load();
+            //context.Names.Load();
 
-            searchViewSource.Source = context.Names.Local.ToObservableCollection();
+            //searchViewSource.Source = context.Names.Local.ToObservableCollection();
         }
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
-            var searchText = txtSearch.Text.ToLower(); // Case-insensitive search
-            var query = (from name in context.Names.Local
-                        where name.PrimaryName.ToLower().Contains(searchText) // Case-insensitive search
-                        select name).Take(50);
+            string searchText = txtSearch.Text.ToLower();
+            // Load only a minimal set of data, ensure this query is correct and optimal.
+            var results = context.Names
+                                 .Where(n => n.PrimaryName.ToLower().Contains(searchText))
+                                 .Select(n => new { n.PrimaryName, n.PrimaryProfession })
+                                 .Take(10) // Reduce the number initially loaded to see if it resolves the freezing
+                                 .ToList();
 
-            searchViewSource.Source = query.ToList();
+            TitlesListView.ItemsSource = results;
+
+
+            //var searchText = txtSearch.Text.ToLower(); // Case-insensitive search
+            //var query = (from name in context.Names.Local
+            //            where name.PrimaryName.ToLower().Contains(searchText) // Case-insensitive search
+            //            select name).Take(50);
+
+            //searchViewSource.Source = query.ToList();
         }
     }
 }
