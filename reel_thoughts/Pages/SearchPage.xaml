@@ -22,22 +22,4 @@
             </ListView.ItemTemplate>
         </ListView>
     </StackPanel>
-
-        <ListView ItemsSource="{Binding Source={StaticResource searchViewSource}}"
-                  MaxHeight="500" MaxWidth="800">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <StackPanel Orientation="Vertical" Width="550">
-                            <TextBlock Text="{Binding PrimaryName}" TextWrapping="Wrap"></TextBlock>
-                        </StackPanel>
-                        <StackPanel Orientation="Vertical" Width="250">
-                            <TextBlock Text="{Binding PrimaryProfession}"></TextBlock>
-                        </StackPanel>
-                    </StackPanel>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-    </StackPanel>
-
 </Page>
