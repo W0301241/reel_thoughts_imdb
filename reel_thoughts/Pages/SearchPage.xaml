@@ -8,17 +8,21 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="SearchPage">
 
-    <Page.Resources>
-        <CollectionViewSource x:Key="searchViewSource"></CollectionViewSource>
-    </Page.Resources>
-
     <StackPanel>
-        <StackPanel Orientation="Horizontal">
-            <TextBlock Text="Search Page"></TextBlock>
-            <TextBox x:Name="txtSearch" Width="300" Height="30" FontSize="20"/>
-            <Button x:Name="SearchButton"
-                    Click="SearchButton_Click" Style="{StaticResource SearchButton}"/>
-        </StackPanel>
+        <TextBox x:Name="txtSearch" Width="300" Margin="10" FontSize="16" HorizontalAlignment="Left" />
+        <Button Content="Search" Width="100" Margin="10" HorizontalAlignment="Left" Click="SearchButton_Click"/>
+        <ListView x:Name="TitlesListView" Margin="10">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding PrimaryName}" FontWeight="Bold" FontSize="14" />
+                        <TextBlock Text="{Binding PrimaryProfession}" FontSize="12" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackPanel>
+
         <ListView ItemsSource="{Binding Source={StaticResource searchViewSource}}"
                   MaxHeight="500" MaxWidth="800">
             <ListView.ItemTemplate>
@@ -35,4 +39,5 @@
             </ListView.ItemTemplate>
         </ListView>
     </StackPanel>
+
 </Page>

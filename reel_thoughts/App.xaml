@@ -4,6 +4,7 @@
              xmlns:local="clr-namespace:reel_thoughts"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
+
         <Style x:Key="SearchButton" TargetType="Button">
             <Setter Property="Width" Value="80"/>
             <Setter Property="Height" Value="30"/>
@@ -11,5 +12,6 @@
         </Style>
 
         <SolidColorBrush x:Key="AppBackgroundColor" Color="Black"/>
+
     </Application.Resources>
 </Application>
