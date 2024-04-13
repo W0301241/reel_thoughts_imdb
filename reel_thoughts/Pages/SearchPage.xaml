@@ -8,7 +8,31 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="SearchPage">
 
-    <Grid>
-        
-    </Grid>
+    <Page.Resources>
+        <CollectionViewSource x:Key="searchViewSource"></CollectionViewSource>
+    </Page.Resources>
+
+    <StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="Search Page"></TextBlock>
+            <TextBox x:Name="txtSearch" Width="300" Height="30" FontSize="20"/>
+            <Button x:Name="SearchButton"
+                    Click="SearchButton_Click" Style="{StaticResource SearchButton}"/>
+        </StackPanel>
+        <DataGrid Height="450" Width="750" 
+                  ItemsSource="{Binding Source={StaticResource searchViewSource}}"
+                  AutoGenerateColumns="False"
+                  RowBackground="LightGray"
+                  AlternatingRowBackground="#FFD1DC"
+                  GridLinesVisibility="None">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding PrimaryName}"
+                            Header="Name" SortDirection="Ascending" Width="100">
+                </DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding PrimaryProfession}"
+                            Header="Profession">
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </StackPanel>
 </Page>
