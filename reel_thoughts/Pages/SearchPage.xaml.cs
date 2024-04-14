@@ -24,7 +24,6 @@ namespace reel_thoughts.Pages
     public partial class SearchPage : Page
     {
         ImdbContext context = new ImdbContext();
-        //CollectionViewSource searchViewSource = new CollectionViewSource();
 
         public SearchPage()
         {
@@ -38,10 +37,20 @@ namespace reel_thoughts.Pages
             var results = context.Names
                                  .Where(n => n.PrimaryName.ToLower().Contains(searchText))
                                  .Select(n => new { n.PrimaryName, n.PrimaryProfession })
-                                 .Take(10) // Reduce the number initially loaded to see if it resolves the freezing
+                                 .Take(20) // Reduce the number initially loaded to see if it resolves the freezing
                                  .ToList();
 
-            TitlesListView.ItemsSource = results;
+            PeopleListView.ItemsSource = results;
+
+
+            // Load only a minimal set of data, ensure this query is correct and optimal.
+            var movieResults = context.Titles
+                                 .Where(t => t.PrimaryTitle.ToLower().Contains(searchText))
+                                 .Select(t => new { t.PrimaryTitle })
+                                 .Take(20) // Reduce the number initially loaded to see if it resolves the freezing
+                                 .ToList();
+
+            TitlesListView.ItemsSource = movieResults;
         }
     }
 }
