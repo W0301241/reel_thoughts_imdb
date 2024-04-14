@@ -46,7 +46,7 @@ namespace reel_thoughts.Pages
             // Load only a minimal set of data, ensure this query is correct and optimal.
             var movieResults = context.Titles
                                  .Where(t => t.PrimaryTitle.ToLower().Contains(searchText))
-                                 .Select(t => new { t.PrimaryTitle })
+                                 .Select(t => new { t.PrimaryTitle, t.TitleType })
                                  .Take(20) // Reduce the number initially loaded to see if it resolves the freezing
                                  .ToList();
 

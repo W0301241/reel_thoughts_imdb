@@ -33,6 +33,7 @@
                         <DataTemplate>
                             <StackPanel>
                                 <TextBlock Text="{Binding PrimaryTitle}" FontWeight="Bold" FontSize="14" />
+                                <TextBlock Text="{Binding TitleType}"></TextBlock>
                             </StackPanel>
                         </DataTemplate>
                     </ListView.ItemTemplate>
