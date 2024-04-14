@@ -4,6 +4,20 @@
              xmlns:local="clr-namespace:reel_thoughts"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
+
+        <Style x:Key="SearchButton" TargetType="Button">
+            <Setter Property="Width" Value="80"/>
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="Content" Value="Search"/>
+        </Style>
+
+        <Style x:Key="Title" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="32"></Setter>
+            <Setter Property="Foreground" Value="White"></Setter>
+            <Setter Property="FontFamily" Value="Arial"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+        </Style>
+
         <SolidColorBrush x:Key="AppBackgroundColor" Color="Black"/>
 
     </Application.Resources>
