@@ -11,6 +11,13 @@
             <Setter Property="Content" Value="Search"/>
         </Style>
 
+        <Style x:Key="Title" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="32"></Setter>
+            <Setter Property="Foreground" Value="White"></Setter>
+            <Setter Property="FontFamily" Value="Arial"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+        </Style>
+
         <SolidColorBrush x:Key="AppBackgroundColor" Color="Black"/>
 
     </Application.Resources>

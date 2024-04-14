@@ -10,9 +10,9 @@
 
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel>
-            <TextBlock Text="Search for People or Movies" Foreground="White" FontSize="30"></TextBlock>
+            <TextBlock Text="Search for People or Movies" Style="{StaticResource Title}"></TextBlock>
             <TextBox x:Name="txtSearch" Width="300" Margin="10" FontSize="16" HorizontalAlignment="Center" />
-            <Button Content="Search" Width="100" Margin="10" HorizontalAlignment="Center" Click="SearchButton_Click"/>
+            <Button Content="Search" Click="SearchButton_Click" Style="{StaticResource SearchButton}"/>
 
             <Expander Header="Names" Foreground="White" Margin="10">
                 <ListView x:Name="PeopleListView" Margin="10">
