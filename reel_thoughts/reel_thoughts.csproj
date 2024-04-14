@@ -15,6 +15,7 @@
     <None Remove="Images\moviebackground.jpg" />
     <None Remove="Images\rate.png" />
     <None Remove="Images\search_button.png" />
+    <None Remove="Images\star.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -49,6 +50,7 @@
     <Resource Include="Images\search_button.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Images\star.png" />
   </ItemGroup>
 
 </Project>
