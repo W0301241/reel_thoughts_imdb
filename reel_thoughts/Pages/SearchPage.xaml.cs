@@ -29,12 +29,6 @@ namespace reel_thoughts.Pages
         public SearchPage()
         {
             InitializeComponent();
-
-            //searchViewSource = (CollectionViewSource)FindResource(nameof(searchViewSource));
-
-            //context.Names.Load();
-
-            //searchViewSource.Source = context.Names.Local.ToObservableCollection();
         }
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)
@@ -48,14 +42,6 @@ namespace reel_thoughts.Pages
                                  .ToList();
 
             TitlesListView.ItemsSource = results;
-
-
-            //var searchText = txtSearch.Text.ToLower(); // Case-insensitive search
-            //var query = (from name in context.Names.Local
-            //            where name.PrimaryName.ToLower().Contains(searchText) // Case-insensitive search
-            //            select name).Take(50);
-
-            //searchViewSource.Source = query.ToList();
         }
     }
 }
