@@ -30,49 +30,47 @@ namespace reel_thoughts.Pages
         public BrowsePage()
         {
             InitializeComponent();
-            InitializeMoviesList();
+            InitializeMoviesListAsync(); //await. more like... DONT wait, hahaha. 
         }
 
-        private void InitializeMoviesList()
+        private async Task InitializeMoviesListAsync()
         {
-            // Load only the primary titles for initial display
-            var movies = context.Titles
+            var movies = await context.Titles
+                .OrderBy(t => t.PrimaryTitle)
                 .Select(t => new
                 {
                     t.TitleId,
                     PrimaryTitle = t.PrimaryTitle
                 })
-                .OrderBy(t => t.PrimaryTitle)
-                .ToList();
+                .ToListAsync();
 
             moviesListView.ItemsSource = movies;
         }
 
-        private void Expander_Expanded(object sender, RoutedEventArgs e)
+        private async void Expander_Expanded(object sender, RoutedEventArgs e)
         {
             var expander = sender as Expander;
             if (expander != null && expander.IsExpanded)
             {
                 var title = expander.Header.ToString();
-                var movieDetails = context.Titles
+                var movieDetails = await context.Titles
                     .Where(t => t.PrimaryTitle == title)
                     .Select(t => new
                     {
-                        Year = t.StartYear,
-                        Genres = string.Join(", ", t.Genres.Select(g => g.Name)),
-                        AverageRating = t.Rating.AverageRating
-                    }).FirstOrDefault();
+                        // Handling nullable values by directly converting them to strings in the query
+                        Year = t.StartYear.HasValue ? t.StartYear.Value.ToString() : "N/A",
+                        Genres = t.Genres.Any() ? string.Join(", ", t.Genres.Select(g => g.Name)) : "N/A",
+                        AverageRating = t.Rating.AverageRating.HasValue ? t.Rating.AverageRating.Value.ToString("F2") : "N/A"
+                    }).FirstOrDefaultAsync();
 
                 if (movieDetails != null)
                 {
                     var contentPanel = expander.Content as StackPanel;
-                    if (contentPanel != null)
-                    {
-                        contentPanel.Children.Clear();
-                        contentPanel.Children.Add(new TextBlock { Text = $"Year: {movieDetails.Year}", FontWeight = FontWeights.Bold });
-                        contentPanel.Children.Add(new TextBlock { Text = $"Genres: {movieDetails.Genres}" });
-                        contentPanel.Children.Add(new TextBlock { Text = $"Rating: {movieDetails.AverageRating}" });
-                    }
+                    contentPanel.Children.Clear();
+                    contentPanel.Children.Add(new TextBlock { Text = $"Year: {movieDetails.Year}", FontWeight = FontWeights.Bold, Style = (Style)Resources["TextBlockStyle"] });
+                    contentPanel.Children.Add(new TextBlock { Text = $"Genres: {movieDetails.Genres}", Style = (Style)Resources["TextBlockStyle"] });
+                    contentPanel.Children.Add(new TextBlock { Text = $"Rating: {movieDetails.AverageRating}", Style = (Style)Resources["TextBlockStyle"] });
+
                 }
             }
         }
