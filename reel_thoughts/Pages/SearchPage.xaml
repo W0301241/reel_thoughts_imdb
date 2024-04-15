@@ -14,7 +14,7 @@
             <TextBox x:Name="txtSearch" Width="300" Margin="10" FontSize="16" HorizontalAlignment="Center" />
             <Button Content="Search" Click="SearchButton_Click" Style="{StaticResource SearchButton}"/>
 
-            <Expander Header="Names" Foreground="White" Margin="10" Width="400" MaxHeight="200">
+            <Expander Header="People" Foreground="White" Margin="10" Width="400" MaxHeight="200">
                 <ListView x:Name="PeopleListView" Margin="10">
                     <ListView.ItemTemplate>
                         <DataTemplate>
@@ -28,7 +28,7 @@
                 </ListView>
             </Expander>
 
-            <Expander Header="Movies" Foreground="White" Margin="10" Width="400" MaxHeight="200">
+            <Expander Header="Titles" Foreground="White" Margin="10" Width="400" MaxHeight="200">
                 <ListView x:Name="TitlesListView" Margin="10">
                     <ListView.ItemTemplate>
                         <DataTemplate>
