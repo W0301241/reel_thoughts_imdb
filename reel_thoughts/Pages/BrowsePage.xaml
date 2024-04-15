@@ -32,12 +32,7 @@
         </Grid.RowDefinitions>
 
         <TextBlock Text="Browse Movies"
-                   FontSize="24"
-                   FontWeight="Bold"
-                   Foreground="White"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
-                   Margin="10"/>
+                   Style="{StaticResource Title}"/>
 
         <ListView x:Name="moviesListView"
                   Background="Black"
