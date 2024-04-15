@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using IMDBInterface.Models;
+using Microsoft.IdentityModel.Tokens;
 
 namespace reel_thoughts.Pages
 {
@@ -33,22 +34,27 @@ namespace reel_thoughts.Pages
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
             string searchText = txtSearch.Text.ToLower();
-            // Load only a minimal set of data, ensure this query is correct and optimal.
+
+            if (string.IsNullOrWhiteSpace(searchText))
+            {
+                MessageBox.Show("Please enter a search term.");
+                return;
+            }
+
             var results = context.Names
                                  .Where(n => n.PrimaryName.ToLower().Contains(searchText))
                                  .Select(n => new { n.PrimaryName, n.PrimaryProfession })
-                                 .Take(20) // Reduce the number initially loaded to see if it resolves the freezing
+                                 .Take(50) // Reduce the number initially loaded to see if it resolves the freezing
                                  .ToList();
 
             PeopleListView.ItemsSource = results;
 
-
-            // Load only a minimal set of data, ensure this query is correct and optimal.
             var movieResults = context.Titles
                                  .Where(t => t.PrimaryTitle.ToLower().Contains(searchText))
-                                 .Select(t => new { t.PrimaryTitle, t.TitleType })
-                                 .Take(20) // Reduce the number initially loaded to see if it resolves the freezing
+                                 .Select(t => new { t.PrimaryTitle, t.TitleType, Genres = t.Genres.Select(g => g.Name) })
+                                 .Take(50) // Reduce the number initially loaded to see if it resolves the freezing
                                  .ToList();
+            //TODO: separate the movie, tv show, short and video results
 
             TitlesListView.ItemsSource = movieResults;
         }
